@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pourquoi je t’aime ❤️</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial;
+        text-align: center;
+        color: white;
+        background: linear-gradient(135deg, #ff758c, #ffb6c1);
+        background-size: cover;
+        background-position: center;
+        transition: background 1s ease;
+      }
+
+      .overlay {
+        background: rgba(255, 105, 180, 0.35);
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 25px;
+        border-radius: 15px;
+        max-width: 400px;
+        margin: auto;
+      }
+
+      button,
+      input {
+        padding: 12px;
+        margin: 10px;
+        border: none;
+        border-radius: 8px;
+      }
+
+      button {
+        background: white;
+        color: #ff4f7b;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+
+      #reason {
+        margin-top: 20px;
+        font-size: 20px;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="overlay">
+      <h1>💖 Pourquoi je t’aime</h1>
+
+      <input type="file" accept="image/*" onchange="setBackground(event)" />
+
+      <div class="card">
+        <button onclick="showReason()">Découvrir ❤️</button>
+
+        <div id="reason"></div>
+      </div>
+    </div>
+
+    <script>
+      const reasons = [
+        "Ton sourire illumine mes journées ✨",
+        "Tu rends tout plus beau 💕",
+        "Ta douceur me calme 😌",
+        "Tu es unique 💎",
+        "Avec toi tout devient magique 💫",
+      ];
+
+      function showReason() {
+        const text = document.getElementById("reason");
+        const random = reasons[Math.floor(Math.random() * reasons.length)];
+
+        text.style.opacity = 0;
+
+        setTimeout(() => {
+          text.innerText = random;
+          text.style.opacity = 1;
+        }, 200);
+      }
+
+      function setBackground(e) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (ev) {
+          document.body.style.background = `url(${ev.target.result}) center/cover no-repeat`;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    </script>
+  </body>
+</html>
